@@ -6,7 +6,7 @@ import { profile } from '@/data'
 import { cn } from '@/lib/utils'
 
 const links = [
-  { href: '#build', label: 'Build' },
+  { href: '#build', label: 'Demos' },
   { href: '#process', label: 'Process', desktopOnly: true },
   { href: '#work', label: 'Work' },
   { href: '#about', label: 'About', desktopOnly: true },

@@ -24,6 +24,41 @@ export const stats = [
   { value: '4 MB', label: 'database size after rebuilding a 10 GB sync around upserts' },
 ]
 
+// Demo sites built into this repo (served from /demos/…). Add a real client site here too:
+// { slug, title, kind, text, tags, href: 'https://…', image: '/showcase/….jpg', tone }
+export const demos = [
+  {
+    slug: 'pastel',
+    title: 'Atelier Nord — studio site',
+    kind: 'Brand / studio',
+    text: 'A pastel 3D room rendered live in the browser, scroll-lit copy, stacking project cards and magnetic buttons. Calm, tactile, a little unexpected.',
+    tags: ['React', 'Motion', 'three.js'],
+    href: '/demos/pastel/',
+    image: '/showcase/demo-pastel.jpg',
+    tone: '#efdcd4',
+  },
+  {
+    slug: 'estate',
+    title: 'Verdant Heights — project launch',
+    kind: 'Real estate',
+    text: 'A launch page for a residential project: parallax hero, amenities, an interactive floor-plan picker and an enquiry form. The kind of page a sales team runs ads to.',
+    tags: ['React', 'Motion', 'Tailwind'],
+    href: '/demos/estate/',
+    image: '/showcase/demo-estate.jpg',
+    tone: '#0a0908',
+  },
+  {
+    slug: 'dashboard',
+    title: 'Sales Desk — analytics dashboard',
+    kind: 'Dashboard',
+    text: 'KPI tiles, a bookings line chart with hover tooltips, lead sources and a searchable inventory table — with time-range and project filters that actually filter.',
+    tags: ['React', 'TypeScript', 'SVG charts'],
+    href: '/demos/dashboard/',
+    image: '/showcase/demo-dashboard.jpg',
+    tone: '#f6f5f2',
+  },
+]
+
 export const capabilities = [
   {
     title: 'Interactive 3D',

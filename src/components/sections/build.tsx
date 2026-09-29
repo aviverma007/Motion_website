@@ -1,74 +1,76 @@
 'use client'
 import { motion } from 'motion/react'
-import { SqueezeCarousel, type SqueezeSlide } from '@/components/ui/carousel-squeeze'
-import { capabilities } from '@/data'
+import { ArrowUpRight } from 'lucide-react'
+import { demos } from '@/data'
 
 const ease = [0.22, 1, 0.36, 1] as const
-
-const mark = (text: string) => (
-  <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-white">{text}</span>
-)
-
-// Panels: real frames from this site where one exists, gradients for the rest.
-const art: Array<Pick<SqueezeSlide, 'image' | 'imageAlt' | 'background'>> = [
-  { image: '/showcase/robot.jpg', imageAlt: 'A black humanoid robot rendered in real time' },
-  { image: '/showcase/pastel.jpg', imageAlt: 'A pastel 3D room with arches, stairs and a reflective floor' },
-  {
-    background:
-      'radial-gradient(120% 90% at 20% 10%, #1f2937 0%, #0b0f19 55%), repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0 1px, transparent 1px 64px), repeating-linear-gradient(0deg, rgba(255,255,255,0.05) 0 1px, transparent 1px 64px)',
-  },
-  { background: 'linear-gradient(135deg, #2b2330 0%, #0f0f11 45%, #3b2a2f 100%)' },
-  { image: '/showcase/ink.jpg', imageAlt: 'Black ink plumes swirling in white water' },
-  { background: 'radial-gradient(80% 80% at 80% 90%, #14532d 0%, #0a0f0c 60%), linear-gradient(0deg, #09090b, #111827)' },
-]
-
-const slides: SqueezeSlide[] = capabilities.map((c, i) => ({
-  id: c.title,
-  title: `${c.title}.`,
-  description: c.text,
-  overlay: mark(c.title),
-  action: i === 2 || i === 3 ? 'See the work' : 'Start a project',
-  href: i === 2 || i === 3 ? '#work' : '#contact',
-  ...art[i],
-}))
 
 export function Build() {
   return (
     <section id="build" className="relative px-5 md:px-10 pt-24 md:pt-32">
       <div className="mx-auto max-w-6xl">
-        <p className="label mb-5">(01) What I can build</p>
-        <motion.h2
-          className="text-4xl md:text-6xl font-semibold tracking-[-0.04em] leading-[0.98] max-w-3xl"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.9, ease }}
-        >
-          Websites that <span className="font-serif italic font-normal">move,</span> and the systems behind them.
-        </motion.h2>
-        <p className="mt-5 max-w-xl text-muted-foreground">
-          Six kinds of work, one slide each. Hover a panel to widen it, click to bring it forward, or use
-          the arrows — the copy underneath follows.
-        </p>
+        <p className="label mb-5">(01) Demo sites</p>
+        <div className="md:flex md:items-end md:justify-between gap-10">
+          <motion.h2
+            className="text-4xl md:text-6xl font-semibold tracking-[-0.04em] leading-[0.98] max-w-3xl"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9, ease }}
+          >
+            Websites that <span className="font-serif italic font-normal">move.</span> Open one.
+          </motion.h2>
+          <p className="mt-4 md:mt-0 max-w-sm text-sm text-muted-foreground">
+            Three live demo sites in three very different styles — each one a real page you can click
+            through, not a mockup. Fictional brands, real code.
+          </p>
+        </div>
 
-        <motion.div
-          className="mt-12"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.9, ease }}
-        >
-          <SqueezeCarousel
-            slides={slides}
-            label="What I can build"
-            height="clamp(140px, 36cqi, 420px)"
-            radius={14}
-            duration={800}
-            autoplay
-            interval={5000}
-            panelClassName="card-shadow"
-          />
-        </motion.div>
+        <div className="mt-12 grid gap-4 lg:grid-cols-3">
+          {demos.map((d, i) => (
+            <motion.a
+              key={d.slug}
+              href={d.href}
+              target="_blank"
+              rel="noreferrer"
+              className="card-shadow group flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] transition-colors hover:bg-white/[0.05]"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.8, ease, delay: i * 0.1 }}
+              whileHover={{ y: -8 }}
+            >
+              <div className="relative aspect-[16/10] overflow-hidden border-b border-white/10" style={{ background: d.tone }}>
+                <img
+                  src={d.image}
+                  alt={`${d.title} — screenshot`}
+                  loading="lazy"
+                  className="h-full w-full object-cover object-top transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
+                />
+                <span className="absolute left-4 top-4 rounded-full bg-black/60 px-3 py-1 font-mono text-[0.65rem] uppercase tracking-[0.16em] text-white backdrop-blur">
+                  {d.kind}
+                </span>
+              </div>
+              <div className="flex flex-1 flex-col p-6">
+                <div className="flex items-start justify-between gap-3">
+                  <h3 className="text-xl font-medium tracking-tight">{d.title}</h3>
+                  <ArrowUpRight size={18} className="shrink-0 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground" />
+                </div>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{d.text}</p>
+                <ul className="mt-auto flex flex-wrap gap-2 pt-5">
+                  {d.tags.map((t) => (
+                    <li key={t} className="rounded-full border border-white/10 px-3 py-1 text-[0.72rem] text-neutral-300">
+                      {t}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </motion.a>
+          ))}
+        </div>
+        <p className="mt-6 text-xs text-muted-foreground">
+          Demos open in a new tab. Each has a “back to portfolio” pill in the corner.
+        </p>
       </div>
     </section>
   )

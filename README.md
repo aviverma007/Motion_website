@@ -26,7 +26,8 @@ Node 20.19+ is required (Vite 8).
 | `src/components/sections/` | The page sections, in order: `nav`, `hero`, `marquee`, `build`, `skills`, `process`, `work`, `about` (+ `Contact`). |
 | `src/lib/utils.ts` | shadcn's `cn()` class-merge helper. |
 | `src/index.css` | Tailwind import, dark theme tokens, fonts. |
-| `public/showcase/` | Frames of this site's own effects (robot, pastel room, ink) used as carousel panels. |
+| `public/showcase/` | Thumbnails of the demo sites. |
+| `demos/*/index.html` + `src/demos/*` | The demo sites — each is its own page in the multi-page Vite build, served at `/demos/<name>/`. |
 | `components.json` | shadcn CLI config, so `npx shadcn add <component>` drops new components into the right folder. |
 
 ## Components used
@@ -35,12 +36,22 @@ Node 20.19+ is required (Vite 8).
 | --- | --- | --- |
 | `splite.tsx` + `spotlight.tsx` | 21st.dev / ibelick | Hero — Spline robot with a cursor spotlight. Pointer moves anywhere on the page are forwarded to the Spline canvas so the robot tracks site-wide |
 | `liquid-glass-button.tsx` | 21st.dev | Hero buttons (`LiquidButton`). Note: its `asChild` can't wrap a link, so navigation is done in `onClick` |
-| `carousel-squeeze.tsx` | 21st.dev | "What I can build" — one panel open, the rest squeezed into slats; hover to widen, click or arrows to slide, autoplays |
 | `card.tsx` | shadcn | Available for future use |
 | `ink-canvas.tsx` | own | "Ink in still water" WebGL shader — stir with the pointer, press to drop a bead |
 
 Ports from the originals: `framer-motion` → `motion/react` (same API), Next's `<Image>` → `<img>`
 (this is Vite, not Next).
+
+## Demo sites
+
+| URL | What it is |
+| --- | --- |
+| `/demos/pastel/` | Atelier Nord — pastel 3D studio site (React + Motion + three.js, plain CSS) |
+| `/demos/estate/` | Verdant Heights — real-estate project launch page |
+| `/demos/dashboard/` | Sales Desk — light analytics dashboard with sample data |
+
+All brands, names and numbers in the demos are fictional. To add a real client site to the grid,
+add an entry to `demos` in `src/data.ts` with its public `href`.
 
 ## Adding another 21st.dev component
 
