@@ -17,7 +17,7 @@ const C = {
 const FLOOR_Y = -1
 
 /** Rect-plus-semicircle opening, drawn clockwise as a hole path. */
-function archPath(cx, bottom, width, rectHeight) {
+function archPath(cx: number, bottom: number, width: number, rectHeight: number) {
   const r = width / 2
   const p = new THREE.Path()
   p.moveTo(cx - r, bottom)
@@ -127,7 +127,7 @@ function Stones() {
   )
 }
 
-function Pearls({ animate }) {
+function Pearls({ animate }: { animate: boolean }) {
   return (
     <group>
       <Float enabled={animate} speed={1.2} rotationIntensity={0} floatIntensity={1.1}>
@@ -146,7 +146,7 @@ function Pearls({ animate }) {
   )
 }
 
-function Water({ quality }) {
+function Water({ quality }: { quality: Quality }) {
   return (
     <mesh rotation-x={-Math.PI / 2} position={[0, FLOOR_Y + 0.001, 0]} receiveShadow>
       <planeGeometry args={[40, 30]} />
@@ -168,8 +168,8 @@ function Water({ quality }) {
 }
 
 /** Eases the camera in on load, then follows the pointer gently. */
-function CameraRig({ animate }) {
-  const start = useRef(null)
+function CameraRig({ animate }: { animate: boolean }) {
+  const start = useRef<number | null>(null)
   const look = useMemo(() => new THREE.Vector3(0, 0.5, -2.4), [])
   useFrame((state, delta) => {
     const cam = state.camera
@@ -196,7 +196,17 @@ function CameraRig({ animate }) {
   return null
 }
 
-export default function HeroScene({ active = true, reducedMotion = false, quality = 'high' }) {
+export type Quality = 'high' | 'low'
+
+export interface PastelSceneProps {
+  /** false pauses the render loop (e.g. when scrolled off-screen) */
+  active?: boolean
+  reducedMotion?: boolean
+  quality?: Quality
+}
+
+/** Soft pastel 3D room: arched plaster wall, stairs, reflective water, floating pearls. */
+export default function PastelScene({ active = true, reducedMotion = false, quality = 'high' }: PastelSceneProps) {
   const animate = active && !reducedMotion
   return (
     <Canvas

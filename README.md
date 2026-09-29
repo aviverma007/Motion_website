@@ -1,7 +1,10 @@
 # Motion_website
 
-Personal developer portfolio for **Anirudh Verma** — a soft pastel, 3D "clay" site built with
-React 19, [Motion](https://motion.dev) and three.js (React Three Fiber).
+Personal developer portfolio for **Anirudh Verma** — a dark, motion-led showcase of the kinds of
+websites he builds, what he knows and the work he does.
+
+Built with React 19 · TypeScript · Vite 8 · Tailwind CSS v4 · [Motion](https://motion.dev) ·
+three.js (React Three Fiber) · Spline, in a shadcn-style project structure.
 
 ## Run it
 
@@ -9,32 +12,42 @@ React 19, [Motion](https://motion.dev) and three.js (React Three Fiber).
 npm install
 npm run dev      # http://localhost:5173
 npm run build    # production build in dist/
+npx tsc          # type-check
 ```
 
 Node 20.19+ is required (Vite 8).
 
-## Where things live
+## Project structure (shadcn conventions)
 
-| File | What it does |
+| Path | What it is |
 | --- | --- |
-| `src/data.js` | **All copy** — name, stats, projects, stack. Edit this to change what the site says. |
-| `src/components/HeroScene.jsx` | three.js hero: arched plaster wall, stairs, reflective water, floating pearls, camera intro + mouse parallax |
-| `src/components/Hero.jsx` | Headline word-by-word reveal, scroll parallax, lazy-loads the 3D scene and pauses it off-screen |
-| `src/components/Marquee.jsx` | Tech strip that speeds up / reverses with scroll velocity |
-| `src/components/About.jsx` | Paragraph that lights up word by word on scroll + clay stat cards |
-| `src/components/Work.jsx` | Sticky stacking project cards with scroll-scale and 3D hover tilt |
-| `src/components/Stack.jsx` | Toolkit columns with bouncy staggered chips |
-| `src/components/Contact.jsx` | Rising orb, magnetic buttons, footer |
-| `src/styles.css` | Design tokens (colors, shadows, fonts) and all styling |
+| `src/data.ts` | **All copy** — name, intro, stats, capabilities, skills, projects. Edit this to change what the site says. |
+| `src/components/ui/` | Reusable UI components. Anything copied from 21st.dev / shadcn goes here so its `@/components/ui/...` imports work unchanged. |
+| `src/components/sections/` | The page sections, in order: `nav`, `expand-hero`, `build`, `skills`, `work`, `about` (+ `Contact`). |
+| `src/lib/utils.ts` | shadcn's `cn()` class-merge helper. |
+| `src/index.css` | Tailwind import, dark theme tokens, fonts. |
+| `components.json` | shadcn CLI config, so `npx shadcn add <component>` drops new components into the right folder. |
+| `public/showcase/` | Images used by the hero. |
 
-## Motion techniques used
+## Components used
 
-- `initial` → `animate` masked word reveals (hero)
-- `useScroll` + `useTransform` for parallax, card stacking and scroll-lit text
-- `useVelocity` + `useAnimationFrame` for the velocity-driven marquee
-- `useMotionValue` + `useSpring` for magnetic buttons and card tilt
-- `whileInView`, `whileHover`, `whileTap`, variants with `staggerChildren`
-- `MotionConfig reducedMotion="user"` — respects the OS "reduce motion" setting
+| Component | Source | Used for |
+| --- | --- | --- |
+| `scroll-expansion-hero.tsx` | 21st.dev | Hero — the frame expands as you scroll, then the intro fades in |
+| `splite.tsx` + `spotlight.tsx` + `card.tsx` | 21st.dev / ibelick / shadcn | "Interactive 3D" card with the Spline robot and a cursor spotlight |
+| `container-scroll-animation.tsx` | 21st.dev (Aceternity) | Tilting device frame that holds a **live** three.js scene |
+| `pastel-scene.tsx` | own | The pastel 3D room (arches, stairs, reflective water, floating pearls) |
+| `ink-canvas.tsx` | own | "Ink in still water" WebGL shader — stir with the pointer, press to drop a bead |
+
+Ports from the originals: `framer-motion` → `motion/react` (same API), Next's `<Image>` → `<img>`
+(this is Vite, not Next).
+
+## Adding another 21st.dev component
+
+1. Copy the component file into `src/components/ui/`.
+2. Change `from "framer-motion"` to `from "motion/react"`, and `next/image` to a plain `<img>`.
+3. Install anything it lists under "Install NPM dependencies".
+4. Use it from a section in `src/components/sections/`.
 
 ## Deploy
 
