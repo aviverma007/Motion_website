@@ -25,6 +25,7 @@ Node 20.19+ is required (Vite 8).
 | `src/components/ui/` | Reusable UI components. Anything copied from 21st.dev / shadcn goes here so its `@/components/ui/...` imports work unchanged. |
 | `src/components/sections/` | The page sections, in order: `nav`, `hero`, `marquee`, `build`, `skills`, `process`, `work`, `about` (+ `Contact`). |
 | `src/lib/utils.ts` | shadcn's `cn()` class-merge helper. |
+| `src/lib/use-lenis.ts` | Lenis smooth scrolling hook (anchor links ease instead of jumping). |
 | `src/index.css` | Tailwind import, dark theme tokens, fonts. |
 | `public/showcase/` | Thumbnails of the demo sites. |
 | `demos/*/index.html` + `src/demos/*` | The demo sites — each is its own page in the multi-page Vite build, served at `/demos/<name>/`. |
@@ -37,6 +38,8 @@ Node 20.19+ is required (Vite 8).
 | `splite.tsx` + `spotlight.tsx` | 21st.dev / ibelick | Hero — Spline robot with a cursor spotlight. Pointer moves anywhere on the page are forwarded to the Spline canvas so the robot tracks site-wide |
 | `liquid-glass-button.tsx` | 21st.dev | Hero buttons (`LiquidButton`). Note: its `asChild` can't wrap a link, so navigation is done in `onClick` |
 | `card.tsx` | shadcn | Available for future use |
+| `scrub-canvas.tsx` | own | Full-bleed WebGL quad driven by a scroll-progress MotionValue (used by the studio demo) |
+| `preloader.tsx` | own | 0→100% loading counter that wipes away (portfolio + studio demo) |
 | `ink-canvas.tsx` | own | "Ink in still water" WebGL shader — stir with the pointer, press to drop a bead |
 
 Ports from the originals: `framer-motion` → `motion/react` (same API), Next's `<Image>` → `<img>`
@@ -49,6 +52,7 @@ Ports from the originals: `framer-motion` → `motion/react` (same API), Next's 
 | `/demos/pastel/` | Atelier Nord — pastel 3D studio site (React + Motion + three.js, plain CSS) |
 | `/demos/estate/` | Verdant Heights — real-estate project launch page |
 | `/demos/dashboard/` | Sales Desk — light analytics dashboard with sample data |
+| `/demos/studio/` | Verma Studio — freelance studio site: preloader, Lenis smooth scroll, two pinned scroll-scrubbed shader chapters (`src/demos/studio/shaders.ts`), services, package, starfield contact. Brand name is one constant in `src/demos/studio/data.ts`. |
 
 All brands, names and numbers in the demos are fictional. To add a real client site to the grid,
 add an entry to `demos` in `src/data.ts` with its public `href`.

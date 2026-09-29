@@ -23,6 +23,7 @@ export default defineConfig({
         pastel: path.resolve(root, 'demos/pastel/index.html'),
         estate: path.resolve(root, 'demos/estate/index.html'),
         dashboard: path.resolve(root, 'demos/dashboard/index.html'),
+        studio: path.resolve(root, 'demos/studio/index.html'),
       },
     },
   },

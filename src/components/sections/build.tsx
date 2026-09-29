@@ -18,15 +18,15 @@ export function Build() {
             viewport={{ once: true }}
             transition={{ duration: 0.9, ease }}
           >
-            Websites that <span className="font-serif italic font-normal">move.</span> Open one.
+            Websites that <span className="font-serif italic font-normal text-gold">move.</span> Open one.
           </motion.h2>
           <p className="mt-4 md:mt-0 max-w-sm text-sm text-muted-foreground">
-            Three live demo sites in three very different styles — each one a real page you can click
-            through, not a mockup. Fictional brands, real code.
+            Four live demo sites in four different styles — each one a real page you can click through,
+            not a mockup. Fictional brands, real code.
           </p>
         </div>
 
-        <div className="mt-12 grid gap-4 lg:grid-cols-3">
+        <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {demos.map((d, i) => (
             <motion.a
               key={d.slug}
@@ -53,7 +53,7 @@ export function Build() {
               </div>
               <div className="flex flex-1 flex-col p-6">
                 <div className="flex items-start justify-between gap-3">
-                  <h3 className="text-xl font-medium tracking-tight">{d.title}</h3>
+                  <h3 className="text-lg font-medium tracking-tight">{d.title}</h3>
                   <ArrowUpRight size={18} className="shrink-0 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground" />
                 </div>
                 <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{d.text}</p>

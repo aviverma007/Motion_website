@@ -64,8 +64,10 @@ export function Hero() {
             {['Anirudh', 'Verma.'].map((w, i) => (
               <span key={w} className="block overflow-hidden">
                 <motion.span
-                  className={`block bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 ${
-                    i === 1 ? 'font-serif italic font-normal' : ''
+                  className={`block bg-clip-text text-transparent ${
+                    i === 1
+                      ? 'font-serif italic font-normal bg-gradient-to-b from-[#f3dc9a] to-[#c9a24a]'
+                      : 'bg-gradient-to-b from-neutral-50 to-neutral-400'
                   }`}
                   initial={{ y: '110%' }}
                   animate={{ y: 0 }}

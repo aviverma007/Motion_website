@@ -57,6 +57,16 @@ export const demos = [
     image: '/showcase/demo-dashboard.jpg',
     tone: '#f6f5f2',
   },
+  {
+    slug: 'studio',
+    title: 'Verma Studio — freelance studio',
+    kind: 'Freelance · cinematic',
+    text: 'My freelance front door: preloader, smooth scrolling and two scroll-driven cinematic chapters (a golden vortex and an ember iris, both live shaders) with step cards, services and a launch package.',
+    tags: ['Lenis', 'Motion', 'GLSL'],
+    href: '/demos/studio/',
+    image: '/showcase/demo-studio.jpg',
+    tone: '#060608',
+  },
 ]
 
 export const capabilities = [

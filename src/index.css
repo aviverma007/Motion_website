@@ -18,6 +18,7 @@
   --accent: #27272a;
   --accent-foreground: #fafafa;
   --destructive: #dc2626;
+  --gold: #e9c46a;
   --font-serif: 'Instrument Serif', 'Times New Roman', serif;
   --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
@@ -40,6 +41,7 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
+  --color-gold: var(--gold);
   --font-serif: var(--font-serif);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
