@@ -67,6 +67,18 @@ add an entry to `demos` in `src/data.ts` with its public `href`.
 3. Install anything it lists under "Install NPM dependencies".
 4. Use it from a section in `src/components/sections/`.
 
+## Share on your Wi-Fi (same network)
+
+```bash
+npm run serve        # production build, served to everyone on the network
+# or, with hot reload while you keep editing:
+npm run dev:lan
+```
+
+Vite prints a `Network:` line such as `http://192.168.1.42:4173/` — send that address to anyone
+on the same Wi-Fi. (Find your IP with `ipconfig` on Windows if you need it.) The first time,
+Windows may ask to allow Node through the firewall — choose **Private networks**.
+
 ## Deploy
 
 `npm run build` outputs a static `dist/` folder — host it on Vercel / Netlify, or serve it from
