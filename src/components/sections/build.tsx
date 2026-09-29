@@ -25,12 +25,12 @@ export function Build() {
             Websites that <span className="font-serif italic font-normal text-gold">move.</span> Open one.
           </motion.h2>
           <p className="mt-4 md:mt-0 max-w-sm text-sm text-muted-foreground">
-            Four live demo sites in four different styles — each one a real page you can click through,
+            Five live demo sites in five different styles — each one a real page you can click through,
             not a mockup. Fictional brands, real code.
           </p>
         </div>
 
-        <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {demos.map((d, i) => (
             <motion.a
               key={d.slug}

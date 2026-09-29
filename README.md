@@ -53,6 +53,7 @@ Ports from the originals: `framer-motion` → `motion/react` (same API), Next's 
 | `/demos/pastel/` | Atelier Nord — pastel 3D studio site (React + Motion + three.js, plain CSS) |
 | `/demos/estate/` | Verdant Heights — real-estate project launch page |
 | `/demos/dashboard/` | Sales Desk — light analytics dashboard with sample data |
+| `/demos/scratch/` | Scratch reveal — cursor-controlled dry-brush hero (`components/ui/scratch-reveal.tsx`): procedural irregular brush, 2.7 s shrinking trail, mask rebuilt each frame, touch support |
 | `/demos/studio/` | Verma Studio — freelance studio site: preloader, Lenis smooth scroll, two pinned scroll-scrubbed shader chapters (`src/demos/studio/shaders.ts`), services, package, starfield contact. Brand name is one constant in `src/demos/studio/data.ts`. |
 
 Demo cards open in an in-page viewer (`?embedded=1`); Ctrl/⌘-click opens the demo in a new tab.

@@ -24,6 +24,7 @@ export default defineConfig({
         estate: path.resolve(root, 'demos/estate/index.html'),
         dashboard: path.resolve(root, 'demos/dashboard/index.html'),
         studio: path.resolve(root, 'demos/studio/index.html'),
+        scratch: path.resolve(root, 'demos/scratch/index.html'),
       },
     },
   },

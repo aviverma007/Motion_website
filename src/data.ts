@@ -67,6 +67,16 @@ export const demos = [
     image: '/showcase/demo-studio.jpg',
     tone: '#060608',
   },
+  {
+    slug: 'scratch',
+    title: 'Scratch reveal — dry-brush hero',
+    kind: 'Interactive hero',
+    text: 'Drag across the hero to scratch the top picture away with a rough dry brush and reveal the one underneath. Strokes heal in 2.7 s. Pure canvas, no libraries.',
+    tags: ['Canvas', 'Procedural brush', 'Touch'],
+    href: '/demos/scratch/',
+    image: '/showcase/demo-scratch.jpg',
+    tone: '#e8e8e8',
+  },
 ]
 
 export const capabilities = [
