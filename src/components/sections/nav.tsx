@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { motion, useScroll, useMotionValueEvent } from 'motion/react'
-import { Code2, Mail } from 'lucide-react'
+import { Mail } from 'lucide-react'
 import { profile } from '@/data'
 import { cn } from '@/lib/utils'
 
@@ -47,9 +47,6 @@ export function Nav() {
           </a>
         ))}
         <span className="hidden md:flex items-center gap-3 pl-3 border-l border-white/10">
-          <a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub" className="text-muted-foreground hover:text-foreground">
-            <Code2 size={16} />
-          </a>
           <a href={`mailto:${profile.email}`} aria-label="Email" className="text-muted-foreground hover:text-foreground">
             <Mail size={16} />
           </a>

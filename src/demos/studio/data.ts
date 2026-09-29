@@ -4,7 +4,6 @@ export const brand = {
   mark: 'VERMA',
   tagline: 'Freelance web design & build',
   email: 'anirudh.verma@smartworlddevelopers.com',
-  github: 'https://github.com/aviverma007',
   availability: 'Available for freelance · 2 slots this quarter',
   accent: '#e9c46a',
 }

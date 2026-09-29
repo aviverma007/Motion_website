@@ -313,16 +313,10 @@ function Contact() {
           <li className="flex items-center gap-3">
             <i className="h-1.5 w-1.5 rounded-full" style={{ background: gold }} /> {brand.email}
           </li>
-          <li className="flex items-center gap-3">
-            <i className="h-1.5 w-1.5 rounded-full" style={{ background: gold }} /> github · aviverma007
-          </li>
         </ul>
         <div className="mt-10 flex flex-wrap gap-3">
           <a href={`mailto:${brand.email}`} className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-black hover:bg-neutral-200">
             Start a project <ArrowUpRight size={14} />
-          </a>
-          <a href={brand.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm hover:bg-white/5">
-            See the code <i className="h-1.5 w-1.5 rounded-full" style={{ background: gold }} />
           </a>
         </div>
         <footer className="mt-32 flex flex-wrap justify-between gap-3 border-t border-white/10 pt-6 font-mono text-[0.62rem] uppercase tracking-[0.2em] text-neutral-500">

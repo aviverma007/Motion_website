@@ -5,7 +5,6 @@ export const profile = {
   role: 'Full-stack developer',
   org: 'Smart World Developers',
   location: 'Gurugram, India',
-  github: 'https://github.com/aviverma007',
   email: 'anirudh.verma@smartworlddevelopers.com',
   intro:
     'I build the software a business runs on but rarely sees: analytics dashboards, approval portals, billing platforms and the data pipelines underneath them. Fast interfaces on top, sturdy services and clean data below.',

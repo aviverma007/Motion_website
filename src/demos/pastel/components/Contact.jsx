@@ -33,9 +33,6 @@ export default function Contact() {
       </motion.h2>
       <div className="contact-actions">
         <MagneticButton href={`mailto:${profile.email}`}>Say hello</MagneticButton>
-        <MagneticButton href={profile.github} variant="ghost">
-          GitHub ↗
-        </MagneticButton>
       </div>
 
       <footer className="footer">

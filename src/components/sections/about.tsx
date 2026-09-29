@@ -1,6 +1,6 @@
 'use client'
 import { motion } from 'motion/react'
-import { ArrowUpRight, Code2, Mail, MapPin } from 'lucide-react'
+import { Mail, MapPin } from 'lucide-react'
 import { profile } from '@/data'
 
 const ease = [0.22, 1, 0.36, 1] as const
@@ -19,12 +19,6 @@ export function About() {
           <ul className="mt-8 space-y-2 text-sm text-muted-foreground">
             <li className="flex items-center gap-2">
               <MapPin size={14} /> {profile.location}
-            </li>
-            <li className="flex items-center gap-2">
-              <Code2 size={14} />
-              <a href={profile.github} target="_blank" rel="noreferrer" className="hover:text-foreground">
-                github.com/aviverma007
-              </a>
             </li>
             <li className="flex items-center gap-2">
               <Mail size={14} />
@@ -97,14 +91,6 @@ export function Contact() {
             className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background hover:bg-white transition-colors"
           >
             Say hello <Mail size={14} />
-          </a>
-          <a
-            href={profile.github}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm hover:bg-white/5 transition-colors"
-          >
-            GitHub <ArrowUpRight size={14} />
           </a>
         </div>
         <footer className="mt-32 md:mt-48 flex flex-wrap justify-between gap-3 border-t border-white/10 pt-6 text-xs text-muted-foreground">

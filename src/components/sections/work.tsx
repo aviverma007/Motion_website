@@ -1,6 +1,5 @@
 'use client'
 import { motion } from 'motion/react'
-import { ArrowUpRight } from 'lucide-react'
 import { projects } from '@/data'
 
 const ease = [0.22, 1, 0.36, 1] as const
@@ -51,14 +50,6 @@ export function Work() {
           ))}
         </div>
 
-        <a
-          href="https://github.com/aviverma007"
-          target="_blank"
-          rel="noreferrer"
-          className="mt-8 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-        >
-          More on GitHub <ArrowUpRight size={14} />
-        </a>
       </div>
     </section>
   )

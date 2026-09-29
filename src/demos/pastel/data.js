@@ -5,7 +5,6 @@ export const profile = {
   name: 'Atelier Nord',
   role: 'Brand & digital studio',
   org: 'Atelier Nord',
-  github: 'https://github.com/aviverma007',
   email: 'anirudh.verma@smartworlddevelopers.com',
   location: 'Gurugram · remote',
 }

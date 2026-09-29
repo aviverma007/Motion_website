@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useRef } from 'react'
 import { motion } from 'motion/react'
-import { ArrowDown, ArrowUpRight, Mail } from 'lucide-react'
+import { ArrowDown, Mail } from 'lucide-react'
 import { SplineScene } from '@/components/ui/splite'
 import { Spotlight } from '@/components/ui/spotlight'
 import { LiquidButton } from '@/components/ui/liquid-glass-button'
@@ -114,14 +114,6 @@ export function Hero() {
                 Say hello <Mail size={14} />
               </span>
             </LiquidButton>
-            <a
-              href={profile.github}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 px-3 py-3 text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              GitHub <ArrowUpRight size={14} />
-            </a>
           </motion.div>
         </div>
 
