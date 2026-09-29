@@ -10,7 +10,7 @@ export function About() {
     <section id="about" className="px-5 md:px-10 py-20 md:py-28 border-t border-white/10">
       <div className="mx-auto max-w-6xl grid gap-12 md:grid-cols-[1fr_1.2fr]">
         <div>
-          <p className="label mb-5">(04) About me</p>
+          <p className="label mb-5">(05) About me</p>
           <h2 className="text-4xl md:text-6xl font-semibold tracking-[-0.04em] leading-[0.98]">
             {profile.name.split(' ')[0]}
             <br />
@@ -79,7 +79,7 @@ export function Contact() {
         style={{ background: 'radial-gradient(circle, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.04) 40%, transparent 70%)' }}
       />
       <div className="relative mx-auto max-w-6xl">
-        <p className="label mb-5">(05) Contact</p>
+        <p className="label mb-5">(06) Contact</p>
         <motion.h2
           className="text-5xl md:text-[7rem] font-semibold tracking-[-0.05em] leading-[0.95]"
           initial={{ opacity: 0, y: 40 }}

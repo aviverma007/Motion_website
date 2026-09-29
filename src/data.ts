@@ -51,6 +51,29 @@ export const capabilities = [
   },
 ]
 
+export const process = [
+  {
+    title: 'Discover',
+    text: 'A short call, then I sit with the spreadsheet, export or approval chain the team actually uses today.',
+    output: 'Output · one-page brief',
+  },
+  {
+    title: 'Design',
+    text: 'Screens sketched around real data, not placeholders. You see the flow before any code is written.',
+    output: 'Output · clickable mockup',
+  },
+  {
+    title: 'Build',
+    text: 'A working version ships early — then weekly rounds with the people who will use it every day.',
+    output: 'Output · staging link',
+  },
+  {
+    title: 'Run',
+    text: 'Deployed, monitored and documented. I stay on for the fixes and the next set of asks.',
+    output: 'Output · live app + runbook',
+  },
+]
+
 export const skills = {
   Frontend: ['React 19', 'TypeScript', 'Vite', 'Tailwind CSS', 'Motion', 'three.js', 'Zustand', 'shadcn/ui'],
   Backend: ['Node / Express', 'Flask', 'FastAPI', 'JWT auth', 'Waitress', 'PDF generation'],

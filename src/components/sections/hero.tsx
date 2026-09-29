@@ -1,21 +1,52 @@
 'use client'
+import { useEffect, useRef } from 'react'
 import { motion } from 'motion/react'
 import { ArrowDown, ArrowUpRight, Mail } from 'lucide-react'
 import { SplineScene } from '@/components/ui/splite'
 import { Spotlight } from '@/components/ui/spotlight'
+import { LiquidButton } from '@/components/ui/liquid-glass-button'
 import { profile, stats } from '@/data'
 
 const ease = [0.22, 1, 0.36, 1] as const
 
+/**
+ * Spline only hears the pointer over its own canvas, so the robot stopped
+ * looking the moment the cursor left it. This forwards every pointer move on
+ * the page to the canvas, so the robot tracks the cursor site-wide.
+ */
+function useForwardPointer(box: React.RefObject<HTMLDivElement | null>) {
+  useEffect(() => {
+    const onMove = (e: PointerEvent) => {
+      const canvas = box.current?.querySelector('canvas')
+      if (!canvas || e.target === canvas) return
+      canvas.dispatchEvent(
+        new PointerEvent('pointermove', {
+          clientX: e.clientX,
+          clientY: e.clientY,
+          pointerType: e.pointerType,
+          bubbles: false,
+        }),
+      )
+    }
+    window.addEventListener('pointermove', onMove, { passive: true })
+    return () => window.removeEventListener('pointermove', onMove)
+  }, [box])
+}
+
 export function Hero() {
+  const splineBox = useRef<HTMLDivElement>(null)
+  useForwardPointer(splineBox)
+
   return (
     <section id="top" className="relative min-h-[100svh] overflow-hidden bg-black">
-      {/* cursor spotlight follows the pointer across the whole hero (ibelick/spotlight) */}
       <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" size={520} />
 
-      {/* Spline robot — full height on the right, behind the copy on small screens */}
-      <div className="absolute right-0 top-1/2 h-[500px] w-full -translate-y-1/2 md:w-[55%] opacity-60 md:opacity-100">
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-transparent md:via-transparent z-10 pointer-events-none" />
+      {/* pointer-events-none: the canvas gets its moves from useForwardPointer, so text stays selectable */}
+      <div
+        ref={splineBox}
+        className="pointer-events-none absolute right-0 top-1/2 h-[500px] w-full -translate-y-1/2 md:w-[55%] opacity-60 md:opacity-100"
+      >
+        <div className="absolute inset-0 z-10 bg-gradient-to-r from-black via-black/60 to-transparent md:via-transparent" />
         <SplineScene scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" className="w-full h-full" />
       </div>
 
@@ -54,23 +85,33 @@ export function Hero() {
             {profile.intro}
           </motion.p>
           <motion.div
-            className="mt-8 flex flex-wrap gap-3"
+            className="mt-8 flex flex-wrap items-center gap-3"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease, delay: 1 }}
           >
-            <a
-              href="#build"
-              className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background hover:bg-white transition-colors"
+            {/* liquid-glass button (21st.dev). Its asChild can't take a link (the glass layers
+                make Slot see several children), so navigation happens on click instead. */}
+            <LiquidButton
+              size="xl"
+              className="rounded-full"
+              onClick={() => document.querySelector('#build')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              See what I build <ArrowDown size={14} />
-            </a>
-            <a
-              href={`mailto:${profile.email}`}
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm hover:bg-white/5 transition-colors"
+              <span className="flex items-center gap-2">
+                See what I build <ArrowDown size={14} />
+              </span>
+            </LiquidButton>
+            <LiquidButton
+              size="xl"
+              className="rounded-full"
+              onClick={() => {
+                window.location.href = `mailto:${profile.email}`
+              }}
             >
-              Say hello <Mail size={14} />
-            </a>
+              <span className="flex items-center gap-2">
+                Say hello <Mail size={14} />
+              </span>
+            </LiquidButton>
             <a
               href={profile.github}
               target="_blank"

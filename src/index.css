@@ -9,7 +9,15 @@
   --muted: #18181b;
   --muted-foreground: #a1a1aa;
   --border: #27272a;
-  --accent: #e4e4e7;
+  --input: #27272a;
+  --ring: #a1a1aa;
+  --primary: #fafafa;
+  --primary-foreground: #09090b;
+  --secondary: #18181b;
+  --secondary-foreground: #fafafa;
+  --accent: #27272a;
+  --accent-foreground: #fafafa;
+  --destructive: #dc2626;
   --font-serif: 'Instrument Serif', 'Times New Roman', serif;
   --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
@@ -23,7 +31,15 @@
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
   --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
   --font-serif: var(--font-serif);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
@@ -64,6 +80,15 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Soft lift + glow behind cards */
+.card-shadow {
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.06) inset,
+    0 20px 50px -20px rgba(0, 0, 0, 0.8),
+    0 8px 24px -8px rgba(0, 0, 0, 0.6),
+    0 0 60px -20px rgba(255, 255, 255, 0.12);
 }
 
 /* Section labels: "(01) Build" */

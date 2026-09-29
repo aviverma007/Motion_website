@@ -2,6 +2,8 @@ import { MotionConfig } from 'motion/react'
 import { Nav } from '@/components/sections/nav'
 import { Hero } from '@/components/sections/hero'
 import { Build } from '@/components/sections/build'
+import { Marquee } from '@/components/sections/marquee'
+import { Process } from '@/components/sections/process'
 import { Skills } from '@/components/sections/skills'
 import { Work } from '@/components/sections/work'
 import { About, Contact } from '@/components/sections/about'
@@ -13,8 +15,10 @@ export default function App() {
       <Nav />
       <main>
         <Hero />
+        <Marquee />
         <Build />
         <Skills />
+        <Process />
         <Work />
         <About />
         <Contact />

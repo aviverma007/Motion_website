@@ -7,8 +7,9 @@ import { cn } from '@/lib/utils'
 
 const links = [
   { href: '#build', label: 'Build' },
+  { href: '#process', label: 'Process', desktopOnly: true },
   { href: '#work', label: 'Work' },
-  { href: '#about', label: 'About' },
+  { href: '#about', label: 'About', desktopOnly: true },
   { href: '#contact', label: 'Contact' },
 ]
 
@@ -32,12 +33,15 @@ export function Nav() {
         anirudh<span className="font-serif italic text-base">verma</span>
         <sup className="text-[0.5rem] ml-0.5">®</sup>
       </a>
-      <nav aria-label="Primary" className="flex items-center gap-5 md:gap-8">
+      <nav aria-label="Primary" className="flex items-center gap-4 md:gap-8">
         {links.map((l) => (
           <a
             key={l.href}
             href={l.href}
-            className="text-[0.82rem] text-muted-foreground hover:text-foreground transition-colors"
+            className={cn(
+              'text-[0.82rem] text-muted-foreground hover:text-foreground transition-colors',
+              l.desktopOnly && 'hidden md:inline',
+            )}
           >
             {l.label}
           </a>

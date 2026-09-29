@@ -3,8 +3,8 @@
 Personal developer portfolio for **Anirudh Verma** — a dark, motion-led showcase of the kinds of
 websites he builds, what he knows and the work he does.
 
-Built with React 19 · TypeScript · Vite 8 · Tailwind CSS v4 · [Motion](https://motion.dev) ·
-three.js (React Three Fiber) · Spline, in a shadcn-style project structure.
+Built with React 19 · TypeScript · Vite 8 · Tailwind CSS v4 · [Motion](https://motion.dev) · Spline,
+in a shadcn-style project structure.
 
 ## Run it
 
@@ -23,18 +23,20 @@ Node 20.19+ is required (Vite 8).
 | --- | --- |
 | `src/data.ts` | **All copy** — name, intro, stats, capabilities, skills, projects. Edit this to change what the site says. |
 | `src/components/ui/` | Reusable UI components. Anything copied from 21st.dev / shadcn goes here so its `@/components/ui/...` imports work unchanged. |
-| `src/components/sections/` | The page sections, in order: `nav`, `hero`, `build`, `skills`, `work`, `about` (+ `Contact`). |
+| `src/components/sections/` | The page sections, in order: `nav`, `hero`, `marquee`, `build`, `skills`, `process`, `work`, `about` (+ `Contact`). |
 | `src/lib/utils.ts` | shadcn's `cn()` class-merge helper. |
 | `src/index.css` | Tailwind import, dark theme tokens, fonts. |
+| `public/showcase/` | Frames of this site's own effects (robot, pastel room, ink) used as carousel panels. |
 | `components.json` | shadcn CLI config, so `npx shadcn add <component>` drops new components into the right folder. |
 
 ## Components used
 
 | Component | Source | Used for |
 | --- | --- | --- |
-| `splite.tsx` + `spotlight.tsx` | 21st.dev / ibelick | Hero — Spline robot with a cursor spotlight (`card.tsx` from shadcn is available for future use) |
-| `container-scroll-animation.tsx` | 21st.dev (Aceternity) | Tilting device frame that holds a **live** three.js scene |
-| `pastel-scene.tsx` | own | The pastel 3D room (arches, stairs, reflective water, floating pearls) |
+| `splite.tsx` + `spotlight.tsx` | 21st.dev / ibelick | Hero — Spline robot with a cursor spotlight. Pointer moves anywhere on the page are forwarded to the Spline canvas so the robot tracks site-wide |
+| `liquid-glass-button.tsx` | 21st.dev | Hero buttons (`LiquidButton`). Note: its `asChild` can't wrap a link, so navigation is done in `onClick` |
+| `carousel-squeeze.tsx` | 21st.dev | "What I can build" — one panel open, the rest squeezed into slats; hover to widen, click or arrows to slide, autoplays |
+| `card.tsx` | shadcn | Available for future use |
 | `ink-canvas.tsx` | own | "Ink in still water" WebGL shader — stir with the pointer, press to drop a bead |
 
 Ports from the originals: `framer-motion` → `motion/react` (same API), Next's `<Image>` → `<img>`

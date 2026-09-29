@@ -1,30 +1,38 @@
 'use client'
-import { lazy, Suspense, useEffect, useRef, useState } from 'react'
-import { motion, useReducedMotion } from 'motion/react'
-import { ContainerScroll } from '@/components/ui/container-scroll-animation'
+import { motion } from 'motion/react'
+import { SqueezeCarousel, type SqueezeSlide } from '@/components/ui/carousel-squeeze'
 import { capabilities } from '@/data'
-
-const PastelScene = lazy(() => import('@/components/ui/pastel-scene'))
-
-function useInView<T extends Element>(margin = '0px') {
-  const ref = useRef<T>(null)
-  const [inView, setInView] = useState(false)
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const io = new IntersectionObserver(([e]) => setInView(e.isIntersecting), { rootMargin: margin })
-    io.observe(el)
-    return () => io.disconnect()
-  }, [margin])
-  return { ref, inView }
-}
 
 const ease = [0.22, 1, 0.36, 1] as const
 
-export function Build() {
-  const reduced = useReducedMotion()
-  const pastel = useInView<HTMLDivElement>('200px')
+const mark = (text: string) => (
+  <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-white">{text}</span>
+)
 
+// Panels: real frames from this site where one exists, gradients for the rest.
+const art: Array<Pick<SqueezeSlide, 'image' | 'imageAlt' | 'background'>> = [
+  { image: '/showcase/robot.jpg', imageAlt: 'A black humanoid robot rendered in real time' },
+  { image: '/showcase/pastel.jpg', imageAlt: 'A pastel 3D room with arches, stairs and a reflective floor' },
+  {
+    background:
+      'radial-gradient(120% 90% at 20% 10%, #1f2937 0%, #0b0f19 55%), repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0 1px, transparent 1px 64px), repeating-linear-gradient(0deg, rgba(255,255,255,0.05) 0 1px, transparent 1px 64px)',
+  },
+  { background: 'linear-gradient(135deg, #2b2330 0%, #0f0f11 45%, #3b2a2f 100%)' },
+  { image: '/showcase/ink.jpg', imageAlt: 'Black ink plumes swirling in white water' },
+  { background: 'radial-gradient(80% 80% at 80% 90%, #14532d 0%, #0a0f0c 60%), linear-gradient(0deg, #09090b, #111827)' },
+]
+
+const slides: SqueezeSlide[] = capabilities.map((c, i) => ({
+  id: c.title,
+  title: `${c.title}.`,
+  description: c.text,
+  overlay: mark(c.title),
+  action: i === 2 || i === 3 ? 'See the work' : 'Start a project',
+  href: i === 2 || i === 3 ? '#work' : '#contact',
+  ...art[i],
+}))
+
+export function Build() {
   return (
     <section id="build" className="relative px-5 md:px-10 pt-24 md:pt-32">
       <div className="mx-auto max-w-6xl">
@@ -38,52 +46,29 @@ export function Build() {
         >
           Websites that <span className="font-serif italic font-normal">move,</span> and the systems behind them.
         </motion.h2>
+        <p className="mt-5 max-w-xl text-muted-foreground">
+          Six kinds of work, one slide each. Hover a panel to widen it, click to bring it forward, or use
+          the arrows — the copy underneath follows.
+        </p>
 
-      </div>
-
-      {/* ── 2. Pastel 3D world inside the scroll-tilting frame (21st.dev: container-scroll-animation) */}
-      <div ref={pastel.ref} className="-mt-8 md:-mt-20">
-        <ContainerScroll
-          titleComponent={
-            <>
-              <p className="label mb-4">Motion-led sites</p>
-              <h3 className="text-3xl md:text-5xl font-semibold tracking-tight">
-                Websites that feel like <span className="font-serif italic font-normal">places.</span>
-              </h3>
-              <p className="mt-4 text-muted-foreground max-w-xl mx-auto">
-                A live three.js scene, not a screenshot — built in React with Motion for the choreography.
-              </p>
-            </>
-          }
+        <motion.div
+          className="mt-12"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.9, ease }}
         >
-          <div className="relative h-full w-full overflow-hidden rounded-2xl bg-[#efdcd4]">
-            <Suspense fallback={<div className="h-full w-full bg-[#efdcd4]" />}>
-              <PastelScene active={pastel.inView} reducedMotion={!!reduced} quality="low" />
-            </Suspense>
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 p-4 md:p-6 flex justify-between text-[#2b2330] text-xs md:text-sm">
-              <span className="font-serif italic text-base md:text-xl">Building the invisible.</span>
-              <span className="font-mono uppercase tracking-widest text-[0.65rem]">three.js · R3F · Motion</span>
-            </div>
-          </div>
-        </ContainerScroll>
-      </div>
-
-      {/* ── Capability grid */}
-      <div className="mx-auto max-w-6xl -mt-20 md:-mt-40 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        {capabilities.map((c, i) => (
-          <motion.div
-            key={c.title}
-            className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 hover:bg-white/[0.05] transition-colors"
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-40px' }}
-            transition={{ duration: 0.7, ease, delay: i * 0.06 }}
-          >
-            <p className="font-mono text-[0.68rem] text-muted-foreground">0{i + 1}</p>
-            <h4 className="mt-3 text-lg font-medium">{c.title}</h4>
-            <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{c.text}</p>
-          </motion.div>
-        ))}
+          <SqueezeCarousel
+            slides={slides}
+            label="What I can build"
+            height="clamp(140px, 36cqi, 420px)"
+            radius={14}
+            duration={800}
+            autoplay
+            interval={5000}
+            panelClassName="card-shadow"
+          />
+        </motion.div>
       </div>
     </section>
   )

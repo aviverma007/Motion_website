@@ -9,7 +9,7 @@ export function Work() {
   return (
     <section id="work" className="px-5 md:px-10 py-20 md:py-28">
       <div className="mx-auto max-w-6xl">
-        <p className="label mb-5">(03) Work I do</p>
+        <p className="label mb-5">(04) Work I do</p>
         <div className="md:flex md:items-end md:justify-between gap-10">
           <h2 className="text-4xl md:text-6xl font-semibold tracking-[-0.04em] leading-[0.98]">
             Things I’ve <span className="font-serif italic font-normal">shipped.</span>
@@ -20,11 +20,11 @@ export function Work() {
           </p>
         </div>
 
-        <div className="mt-12 divide-y divide-white/10 border-y border-white/10">
+        <div className="mt-9">
           {projects.map((p, i) => (
             <motion.article
               key={p.id}
-              className="group grid gap-4 py-7 md:grid-cols-[4rem_1fr_1.3fr_auto] md:items-start"
+              className="card-shadow group my-3 grid gap-4 rounded-2xl border border-white/10 bg-white/[0.02] p-6 md:grid-cols-[4rem_1fr_1.3fr_auto] md:items-start hover:bg-white/[0.05] transition-colors"
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
