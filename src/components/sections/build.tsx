@@ -1,9 +1,6 @@
 'use client'
 import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { motion, useReducedMotion } from 'motion/react'
-import { SplineScene } from '@/components/ui/splite'
-import { Card } from '@/components/ui/card'
-import { Spotlight } from '@/components/ui/spotlight'
 import { ContainerScroll } from '@/components/ui/container-scroll-animation'
 import { capabilities } from '@/data'
 
@@ -42,41 +39,10 @@ export function Build() {
           Websites that <span className="font-serif italic font-normal">move,</span> and the systems behind them.
         </motion.h2>
 
-        {/* ── 1. Interactive 3D — Spline robot with spotlight (21st.dev: splite + spotlight + card) */}
-        <motion.div
-          className="mt-14"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.9, ease }}
-        >
-          <Card className="w-full h-[500px] bg-black/[0.96] relative overflow-hidden border-white/10">
-            {/* the demo passed fill="white", but this Spotlight (ibelick) has no fill prop — the gradient classes set the colour */}
-            <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" size={360} />
-            <div className="flex h-full flex-col md:flex-row">
-              <div className="flex-1 p-8 relative z-10 flex flex-col justify-center">
-                <p className="label mb-4">Interactive 3D</p>
-                <h3 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">
-                  Scenes that look back.
-                </h3>
-                <p className="mt-4 text-neutral-300 max-w-lg">
-                  Real-time 3D straight in the browser — Spline scenes, three.js worlds and shader effects
-                  that follow the cursor and react to the visitor. Move your mouse.
-                </p>
-              </div>
-              <div className="flex-1 relative min-h-[240px]">
-                <SplineScene
-                  scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-                  className="w-full h-full"
-                />
-              </div>
-            </div>
-          </Card>
-        </motion.div>
       </div>
 
       {/* ── 2. Pastel 3D world inside the scroll-tilting frame (21st.dev: container-scroll-animation) */}
-      <div ref={pastel.ref} className="-mt-24 md:-mt-40">
+      <div ref={pastel.ref} className="-mt-8 md:-mt-20">
         <ContainerScroll
           titleComponent={
             <>

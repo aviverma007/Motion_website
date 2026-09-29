@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { motion, useScroll, useMotionValueEvent } from 'motion/react'
 import { Code2, Mail } from 'lucide-react'
 import { profile } from '@/data'
@@ -17,17 +17,11 @@ export function Nav() {
   const [solid, setSolid] = useState(false)
   useMotionValueEvent(scrollY, 'change', (y) => setSolid(y > 40))
 
-  // the expanding hero locks scrolling until it is open; nav links still work after that
-  const [ready, setReady] = useState(false)
-  useEffect(() => {
-    const t = setTimeout(() => setReady(true), 400)
-    return () => clearTimeout(t)
-  }, [])
 
   return (
     <motion.header
       initial={{ y: -60, opacity: 0 }}
-      animate={{ y: 0, opacity: ready ? 1 : 0 }}
+      animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       className={cn(
         'fixed inset-x-0 top-0 z-50 flex items-center justify-between px-5 py-4 md:px-10 transition-colors duration-300',

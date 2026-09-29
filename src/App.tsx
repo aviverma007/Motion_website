@@ -1,6 +1,6 @@
 import { MotionConfig } from 'motion/react'
 import { Nav } from '@/components/sections/nav'
-import { ExpandHero } from '@/components/sections/expand-hero'
+import { Hero } from '@/components/sections/hero'
 import { Build } from '@/components/sections/build'
 import { Skills } from '@/components/sections/skills'
 import { Work } from '@/components/sections/work'
@@ -12,7 +12,7 @@ export default function App() {
     <MotionConfig reducedMotion="user">
       <Nav />
       <main>
-        <ExpandHero />
+        <Hero />
         <Build />
         <Skills />
         <Work />

@@ -23,18 +23,16 @@ Node 20.19+ is required (Vite 8).
 | --- | --- |
 | `src/data.ts` | **All copy** — name, intro, stats, capabilities, skills, projects. Edit this to change what the site says. |
 | `src/components/ui/` | Reusable UI components. Anything copied from 21st.dev / shadcn goes here so its `@/components/ui/...` imports work unchanged. |
-| `src/components/sections/` | The page sections, in order: `nav`, `expand-hero`, `build`, `skills`, `work`, `about` (+ `Contact`). |
+| `src/components/sections/` | The page sections, in order: `nav`, `hero`, `build`, `skills`, `work`, `about` (+ `Contact`). |
 | `src/lib/utils.ts` | shadcn's `cn()` class-merge helper. |
 | `src/index.css` | Tailwind import, dark theme tokens, fonts. |
 | `components.json` | shadcn CLI config, so `npx shadcn add <component>` drops new components into the right folder. |
-| `public/showcase/` | Images used by the hero. |
 
 ## Components used
 
 | Component | Source | Used for |
 | --- | --- | --- |
-| `scroll-expansion-hero.tsx` | 21st.dev | Hero — the frame expands as you scroll, then the intro fades in |
-| `splite.tsx` + `spotlight.tsx` + `card.tsx` | 21st.dev / ibelick / shadcn | "Interactive 3D" card with the Spline robot and a cursor spotlight |
+| `splite.tsx` + `spotlight.tsx` | 21st.dev / ibelick | Hero — Spline robot with a cursor spotlight (`card.tsx` from shadcn is available for future use) |
 | `container-scroll-animation.tsx` | 21st.dev (Aceternity) | Tilting device frame that holds a **live** three.js scene |
 | `pastel-scene.tsx` | own | The pastel 3D room (arches, stairs, reflective water, floating pearls) |
 | `ink-canvas.tsx` | own | "Ink in still water" WebGL shader — stir with the pointer, press to drop a bead |
