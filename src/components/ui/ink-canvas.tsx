@@ -71,19 +71,32 @@ export function InkCanvas({ className }: { className?: string }) {
     const canvas = ref.current
     if (!canvas) return
     const gl = canvas.getContext('webgl2', { antialias: false, alpha: false })
-    if (!gl) return
+    if (!gl) {
+      console.warn('[ink-canvas] WebGL2 unavailable — leaving the static background')
+      return
+    }
+    // React StrictMode mounts twice in dev; a context lost by the first cleanup must be restored
+    const lose = gl.getExtension('WEBGL_lose_context')
+    if (gl.isContextLost()) lose?.restoreContext()
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
     const compile = (type: number, src: string) => {
       const sh = gl.createShader(type)!
       gl.shaderSource(sh, src)
       gl.compileShader(sh)
+      if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) {
+        console.error('[ink-canvas] shader error:', gl.getShaderInfoLog(sh))
+      }
       return sh
     }
     const prog = gl.createProgram()!
     gl.attachShader(prog, compile(gl.VERTEX_SHADER, VERT))
     gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, FRAG))
     gl.linkProgram(prog)
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
+      console.error('[ink-canvas] link error:', gl.getProgramInfoLog(prog))
+      return
+    }
     gl.useProgram(prog)
 
     const buf = gl.createBuffer()
@@ -171,7 +184,9 @@ export function InkCanvas({ className }: { className?: string }) {
       io.disconnect()
       canvas.removeEventListener('pointermove', onMove)
       canvas.removeEventListener('pointerdown', onDown)
-      gl.getExtension('WEBGL_lose_context')?.loseContext()
+      // don't lose the context here: the same canvas is reused on a StrictMode remount
+      gl.deleteProgram(prog)
+      gl.deleteBuffer(buf)
     }
   }, [])
 
