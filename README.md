@@ -39,6 +39,7 @@ Node 20.19+ is required (Vite 8).
 | `liquid-glass-button.tsx` | 21st.dev | Hero buttons (`LiquidButton`). Note: its `asChild` can't wrap a link, so navigation is done in `onClick` |
 | `card.tsx` | shadcn | Available for future use |
 | `scrub-canvas.tsx` | own | Full-bleed WebGL quad driven by a scroll-progress MotionValue (used by the studio demo) |
+| `demo-viewer.tsx` | own | Full-screen in-page viewer (iframe) for the demo cards — Back button, Esc, or the demo's own pill closes it (demos post `{type:'close-demo'}` to the parent) |
 | `preloader.tsx` | own | 0→100% loading counter that wipes away (portfolio + studio demo) |
 | `ink-canvas.tsx` | own | "Ink in still water" WebGL shader — stir with the pointer, press to drop a bead |
 
@@ -54,6 +55,7 @@ Ports from the originals: `framer-motion` → `motion/react` (same API), Next's 
 | `/demos/dashboard/` | Sales Desk — light analytics dashboard with sample data |
 | `/demos/studio/` | Verma Studio — freelance studio site: preloader, Lenis smooth scroll, two pinned scroll-scrubbed shader chapters (`src/demos/studio/shaders.ts`), services, package, starfield contact. Brand name is one constant in `src/demos/studio/data.ts`. |
 
+Demo cards open in an in-page viewer (`?embedded=1`); Ctrl/⌘-click opens the demo in a new tab.
 All brands, names and numbers in the demos are fictional. To add a real client site to the grid,
 add an entry to `demos` in `src/data.ts` with its public `href`.
 

@@ -1,11 +1,15 @@
 'use client'
+import { useCallback, useState } from 'react'
 import { motion } from 'motion/react'
 import { ArrowUpRight } from 'lucide-react'
 import { demos } from '@/data'
+import { DemoViewer, type DemoRef } from '@/components/ui/demo-viewer'
 
 const ease = [0.22, 1, 0.36, 1] as const
 
 export function Build() {
+  const [open, setOpen] = useState<DemoRef | null>(null)
+  const close = useCallback(() => setOpen(null), [])
   return (
     <section id="build" className="relative px-5 md:px-10 pt-24 md:pt-32">
       <div className="mx-auto max-w-6xl">
@@ -31,9 +35,13 @@ export function Build() {
             <motion.a
               key={d.slug}
               href={d.href}
-              target="_blank"
-              rel="noreferrer"
-              className="card-shadow group flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] transition-colors hover:bg-white/[0.05]"
+              onClick={(e) => {
+                // plain click opens the in-page viewer; ctrl/cmd-click still opens a tab
+                if (e.metaKey || e.ctrlKey || e.shiftKey) return
+                e.preventDefault()
+                setOpen({ title: d.title, href: d.href, kind: d.kind })
+              }}
+              className="card-shadow group flex cursor-pointer flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] text-left transition-colors hover:bg-white/[0.05]"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
@@ -69,9 +77,10 @@ export function Build() {
           ))}
         </div>
         <p className="mt-6 text-xs text-muted-foreground">
-          Demos open in a new tab. Each has a “back to portfolio” pill in the corner.
+          Demos open right here, in a viewer — press Back or Esc to return. Ctrl/⌘-click a card to open it in a new tab.
         </p>
       </div>
+      <DemoViewer demo={open} onClose={close} />
     </section>
   )
 }
